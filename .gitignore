@@ -1,0 +1,7 @@
+# virtualenvs
+venv/
+env/
+
+# python
+*.pyc
+**/__pycache__
