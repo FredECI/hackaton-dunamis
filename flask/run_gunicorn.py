@@ -20,4 +20,5 @@ class FlaskAPP(Application, ABC):
 
 
 if __name__ == '__main__':
-    FlaskAPP().run()
+    a = FlaskAPP()
+    a.run()
