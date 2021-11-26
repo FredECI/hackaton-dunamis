@@ -7,7 +7,7 @@ from flask_login import LoginManager
 # module imports
 
 # typing and local imports
-from typing import Dict
+# from typing import Dict
 
 
 db = SQLAlchemy()
@@ -38,8 +38,11 @@ def create_app(config_object: object):
     # app.register_error_handler(500, pagina_de_erro)
 
     # blueprints
-    # from .xxx import xxx as xxxx
-    # app.register_blueprint(xxx)
+    from .api import api as api_blueprint
+    app.register_blueprint(api_blueprint)
+
+    from .home import home as home_blueprint
+    app.register_blueprint(home_blueprint)
 
     # configuracoes do bootstrap
     # mais sobre bootstrap: https://pythonhosted.org/Flask-Bootstrap/basic-usage.html
