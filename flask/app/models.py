@@ -1,5 +1,5 @@
 from flask_login import UserMixin
-from sqlalchemy import Column, String, Boolean
+from sqlalchemy import Column, String, Boolean, Integer
 # from flask_login import LoginManager
 
 from . import db, login_manager
@@ -12,6 +12,9 @@ class Usuario(UserMixin, db.Model):
     nome = Column(String(120))
     senha = Column(String(128))
     admin = Column(Boolean, default=False)
+    gestor = Column(String(50))
+    tempo = Column(Integer)
+    token = Column(String(100))
 
     def get_id(self):
         return self.email
