@@ -5,3 +5,5 @@ env/
 # python
 *.pyc
 **/__pycache__
+
+**/migrations/*

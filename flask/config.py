@@ -4,14 +4,24 @@ from os import getenv
 # para todas as configuracoes:
 # https://flask.palletsprojects.com/en/2.0.x/config/
 
-db = {
+db_postgres = {
     'senha': getenv("POSTGRES_PASSWORD"),
     'host': getenv("POSTGRES_CONNECTION"),
-    'user': getenv('POSTGRES_DATABASE')
+    'user': getenv('POSTGRES_DATABASE'),
 }
 
+db_mysql = {
+    'senha': getenv('MYSQL_PASSWORD'),
+    'host': getenv('MYSQL_CONNECTION'),
+    'user': getenv('MYSQL_DATABASE')
+}
 
-class Config(object):
+database = 'MYSQL' if db_mysql['user'] is not None else 'POSTGRES'
+
+db = db_mysql if database == 'MYSQL' else 'POSTGRES'
+
+
+class Config:
     """
     Configurações comuns
     """
@@ -21,7 +31,11 @@ class Config(object):
                 print(f'a variavel de ambiente {x} nao foi definida. abortando...')
                 exit(1)
 
-    SQLALCHEMY_DATABASE_URI = f'postgresql://postgres:{db["senha"]}@{db["host"]}/{db["user"]}'
+    if database == 'MYSQL':
+        SQLALCHEMY_DATABASE_URI = f'mysql://{db["user"]}{":" + db["senha"] if db["senha"] is not None else ""}@{db["host"]}/dev'
+        f'mysql://'
+    else:
+        SQLALCHEMY_DATABASE_URI = f'postgresql://postgres:{db["senha"]}@{db["host"]}/{db["user"]}'
 
 
 class DevelopmentConfig(Config):

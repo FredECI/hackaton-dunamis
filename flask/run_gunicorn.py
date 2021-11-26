@@ -11,11 +11,8 @@ class FlaskAPP(Application, ABC):
         super().__init__()
 
     def load(self):
-        config_object = app_config.get(os.getenv('FLASK_ENV'))
-        if config_object is None:
-            print("invalid FLASK_ENV environ. aborting")
-            exit(1)
-        _app = create_app(config_object)
+        config_name = os.getenv('FLASK_ENV', 'development')
+        _app = create_app(config_name)
         return _app
 
 
