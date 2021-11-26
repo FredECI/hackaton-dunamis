@@ -16,6 +16,8 @@ db_mysql = {
     'user': getenv('MYSQL_DATABASE')
 }
 
+MYSQL_URI = getenv('MYSQL_URI')
+
 database = 'MYSQL' if db_mysql['user'] is not None else 'POSTGRES'
 
 db = db_mysql if database == 'MYSQL' else 'POSTGRES'
@@ -31,9 +33,12 @@ class Config:
                 print(f'a variavel de ambiente {x} nao foi definida. abortando...')
                 exit(1)
 
-    if database == 'MYSQL':
-        SQLALCHEMY_DATABASE_URI = f'mysql://{db["user"]}{":" + db["senha"] if db["senha"] is not None else ""}@{db["host"]}/dev'
-        f'mysql://'
+    if MYSQL_URI is not None:
+        SQLALCHEMY_DATABASE_URI = MYSQL_URI
+
+    elif database == 'MYSQL':
+        SQLALCHEMY_DATABASE_URI = \
+            f'mysql://{db["user"]}{":" + db["senha"] if db["senha"] is not None else ""}@{db["host"]}/dev'
     else:
         SQLALCHEMY_DATABASE_URI = f'postgresql://postgres:{db["senha"]}@{db["host"]}/{db["user"]}'
 
