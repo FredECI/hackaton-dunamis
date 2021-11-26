@@ -23,7 +23,7 @@ deactivate
 
 4. Exporte as variáveis de ambiente necessárias:
 ```bash
-set XXXX=XXXXX
+set MYSQL_ORI=mysql://admin:agFYuFEeYrsvBjc4Nymf@dev.cjsnzeyi5n0a.us-east-1.rds.amazonaws.com:3306/dev
 ...
 ```
 
