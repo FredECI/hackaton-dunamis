@@ -1,5 +1,5 @@
 from flask_login import UserMixin
-from sqlalchemy import Column, String, Boolean, Integer
+from sqlalchemy import Column, String, Boolean, Integer, DateTime
 # from flask_login import LoginManager
 
 
@@ -50,6 +50,13 @@ class TemDoenca(db.Model):
 
     def __repr__(self):
         return f'<Tem Doenca: {self.email} -> {self.doencas}>'
+
+
+class Tempo(db.Model):
+    __tablename__ = 'tempo'
+
+    token = Column(String(100), primary_key=True)
+    hora = Column(String(50))
 
 
 @login_manager.user_loader
