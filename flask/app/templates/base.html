@@ -49,7 +49,10 @@
                     {% else %}
                     <li class="button-container nav-item iframe-extern">
                         <a href="{{ url_for('home.dashboard') }}" class="btn  btn-info  btn-round btn-block">
-                            <i class="material-icons"></i> Olá, {{ current_user.nome }}! Acesse o Dashboard
+                            <i class="material-icons"></i>
+                            Olá, {{ current_user.nome }}!
+                            {% if current_user.gestor %}<i class="fas fa-star"></i>{% endif %}
+                            Acesse o Dashboard
                         </a>
                     </li>
                     <li class="button-container nav-item iframe-extern">

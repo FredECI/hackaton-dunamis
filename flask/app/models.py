@@ -24,6 +24,7 @@ class Usuario(UserMixin, db.Model):
     hora_fim = Column(Integer)
     token = Column(String(100))
     pontos = Column(Integer, default=0)
+    last_update = Column(String(60))
 
     def get_id(self):
         return self.email
@@ -39,6 +40,16 @@ class Usuario(UserMixin, db.Model):
 
     def __repr__(self):
         return f'<Usuario :{self.nome}>'
+
+
+class TemDoenca(db.Model):
+    __tablename__ = 'tem_doenca'
+
+    email = Column(String(60), primary_key=True, nullable=False)
+    doencas = Column(String(60), nullable=False)
+
+    def __repr__(self):
+        return f'<Tem Doenca: {self.email} -> {self.doencas}>'
 
 
 @login_manager.user_loader

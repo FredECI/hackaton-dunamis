@@ -7,7 +7,6 @@ from ..models import Usuario
 
 @home.route("/", methods=['GET', 'POST'])
 def index():
-    # user = Usuario.query.filter_by(email='daniel@email.com').first()
     return render_template('home/index.html')
 
 
@@ -19,4 +18,4 @@ def dashboard():
 
 @home.route('/exercise', methods=['GET', "POST"])
 def exercise():
-    return render_template('base.html')
+    return render_template('api/exercise.html')
