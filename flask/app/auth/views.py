@@ -1,5 +1,5 @@
 from flask import render_template, request, flash, redirect, url_for, jsonify
-from flask_login import login_user
+from flask_login import login_user, logout_user, current_user
 
 from . import auth
 from ..models import Usuario, encode_md5
@@ -16,12 +16,13 @@ def teste():
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
+        print(request.form)
         if request.json:
             form = request.json
         else:
             form: dict = request.form
-        email: str = form.get('email')
-        senha: str = form.get('senha')
+        email: str = form.get('inputF')
+        senha: str = form.get('senhaF')
         senha_hash: str = encode_md5(senha)
         if email is not None and senha is not None:
             u = Usuario.query.filter_by(email=email, senha=senha_hash).first()
@@ -31,6 +32,7 @@ def login():
 
         flash("Credenciais incorretas", "danger")
 
+    flash("Teste")
     return render_template("auth/login.html")
 
 
@@ -52,11 +54,21 @@ def register():
                 u.senha = encode_md5(senha)
                 u.admin = 0
                 u.gestor = 0
-                u.tempo = 5
+                u.hora_inicio = 9
+                u.hora_fim = 17
 
                 db.session.add(u)
                 db.session.commit()
 
                 login_user(u)
+                return redirect(url_for('home.index'))
 
     return render_template('auth/register.html')
+
+
+@auth.route("/logout", methods=["GET"])
+def logout():
+    if current_user.is_authenticated:
+        logout_user()
+
+    return redirect(url_for("home.index"))

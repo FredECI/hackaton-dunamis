@@ -62,12 +62,7 @@ def tempo():
         r.status = 400
         return r.pack()
 
-    if not isinstance(u.tempo, int):
-        r.d = {'error': 'tempo registrado invalido'}
-        r.status = 500
-        return r.pack()
-
-    r.d = {'tempo': u.tempo}
+    r.d = {'hora_inicio': u.hora_inicio, 'hora_final': u.hora_fim}
     return r.pack()
 
 
@@ -99,16 +94,12 @@ def login():
         r.status = 401
         return r.pack()
 
-    if not isinstance(u.tempo, int):
-        r.d = {'error': 'tempo registrado invalido'}
-        r.status = 500
-        return r.pack()
-
     if u.token is None:
         generate_token(u)
 
     r.d = {
         'token': u.token,
-        'tempo': u.tempo
+        'hora_inicio': u.hora_inicio,
+        'hora_final': u.hora_fim
     }
     return r.pack()

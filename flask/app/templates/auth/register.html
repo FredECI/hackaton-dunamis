@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block titulo %}Registro - FiFit{% endblock %}
+
+{% block head %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+  <link href="{{ url_for('static', filename='sites/css/main.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block body %}
+    <div class="page-header header-filter" filter-color="orange" style="background-image: url({{ url_for('static', filename='sites/img/paisagem.jpg') }}); background-size: cover; background-position: top center;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 ml-auto mr-auto">
+          <div class="card card-signup">
+            <h2 class="card-title text-center roboto">Cadastro</h2>
+            <div class="card-body">
+                <div class="col-md-5 mr-auto">
+
+                  <form class="form" id="idform" method="post" action="">
+                    <div class="form-group">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="material-icons">face</i>
+                          </span>
+                        </div>
+                        <input type="text" id="nome" name="nome" class="form-control" placeholder="Primeiro Nome...">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="material-icons">mail</i>
+                          </span>
+                        </div>
+                        <input type="text" id="email" name="email" class="form-control" placeholder="Email...">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="material-icons">lock_outline</i>
+                          </span>
+                        </div>
+                        <input type="password" id="senha" name="senha"  placeholder="Senha..." class="form-control" />
+                      </div>
+                    </div>
+
+                    <div class="text-center">
+                      <a href="javascript:{}" onclick="document.getElementById('idform').submit();" class="btn btn-info btn-round">Registrar</a>
+                    </div>
+                  </form>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+{% endblock %}

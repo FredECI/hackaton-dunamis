@@ -20,7 +20,8 @@ class Usuario(UserMixin, db.Model):
     senha = Column(String(128))
     admin = Column(Boolean, default=False)
     gestor = Column(String(50))
-    tempo = Column(Integer)
+    hora_inicio = Column(Integer)
+    hora_fim = Column(Integer)
     token = Column(String(100))
 
     def get_id(self):
