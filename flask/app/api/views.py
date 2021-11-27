@@ -52,14 +52,14 @@ def login():
     senha = request.args.get('senha')
 
     if usuario is None or senha is None:
-        return generate_response({'error': 'usuario e senha nao encontrados'})
+        return generate_response({'error': 'usuario e senha nao encontrados'}), 400
 
     u: Usuario = Usuario.query.filter_by(email=usuario).first()
     if u is None:
-        return generate_response({'error': 'email nao encontrado'})
+        return generate_response({'error': 'email nao encontrado'}), 404
 
     if u.senha != senha:
-        return generate_response({'error': 'senha incorreta'})
+        return generate_response({'error': 'senha incorreta'}), 401
 
     if not isinstance(u.tempo, int):
         return generate_response({'error': 'tempo registrado invalido'}), 500
