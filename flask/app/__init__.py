@@ -50,6 +50,9 @@ def create_app(config_name: str):
     from .home import home as home_blueprint
     app.register_blueprint(home_blueprint)
 
+    from .auth import auth as auth_blueprint
+    app.register_blueprint(auth_blueprint)
+
     # configuracoes do bootstrap
     # mais sobre bootstrap: https://pythonhosted.org/Flask-Bootstrap/basic-usage.html
     Bootstrap(app)

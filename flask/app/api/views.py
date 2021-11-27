@@ -8,11 +8,26 @@ API routes:
 """
 
 
-from flask import jsonify, request, current_app, Response
+from flask import jsonify, request, Response
 
 from . import api
 from ..models import Usuario, encode_md5
 from .. import db
+
+from typing import Tuple
+from dataclasses import dataclass, field
+
+
+@dataclass
+class Response:
+    status: int = 200
+    d: dict = field(default_factory=dict)
+
+    def pack(self) -> Tuple[Response, int]:
+        self.d['status'] = self.status
+        response = jsonify(self.d)
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        return response, self.status
 
 
 def generate_token(user: Usuario):
@@ -20,55 +35,69 @@ def generate_token(user: Usuario):
     db.session.commit()
 
 
-def generate_response(d: dict) -> Response:
-    response = jsonify(d)
-    response.headers.add("Access-Control-Allow-Origin", "*")
-    return response
-
-
 @api.route('/api/tempo', methods=['GET'])
 def tempo():
+    r = Response()
     token = request.args.get('token')
     if token is None:
-        return generate_response({'error': 'token nao encontrado'}), 400
+        r.d = {'error': 'token nao encontrado'}
+        r.status = 400
+        return r.pack()
 
     # pra testes
     if token == 'teste':
-        return generate_response({'tempo': 5})
+        r.d = {'tempo', 5}
+        r.status = 234
+        return r.pack()
 
     u: Usuario = Usuario.query.filter_by(token=token).first()
     if u is None:
-        return generate_response({'error': 'token invalido'}), 400
+        r.d = {'error': 'token invalido'}
+        r.status = 400
+        return r.pack()
 
     if not isinstance(u.tempo, int):
-        return {'error': 'tempo registrado invalido'}, 500
+        r.d = {'error': 'tempo registrado invalido'}
+        r.status = 500
+        return r.pack()
 
-    return generate_response({'tempo': u.tempo})
+    r.d = {'tempo': u.tempo}
+    return r.pack()
 
 
-@api.route('/api/login', methods=['GET'])
+@api.route('/api/login', methods=['GET', 'POST'])
 def login():
+    r = Response()
+
     usuario = request.args.get('usuario')
     senha = request.args.get('senha')
 
     if usuario is None or senha is None:
-        return generate_response({'error': 'usuario e senha nao encontrados'}), 400
+        r.d = {'error': 'usuario e senha nao encontrados'}
+        r.status = 400
+        return r.pack()
 
     u: Usuario = Usuario.query.filter_by(email=usuario).first()
     if u is None:
-        return generate_response({'error': 'email nao encontrado'}), 404
+        r.d = {'error': 'email nao encontrado'}
+        r.status = 400
+        return r.pack()
 
     if u.senha != senha:
-        return generate_response({'error': 'senha incorreta'}), 401
+        r.d = {'error': 'senha incorreta'}
+        r.status = 401
+        return r.pack()
 
     if not isinstance(u.tempo, int):
-        return generate_response({'error': 'tempo registrado invalido'}), 500
+        r.d = {'error': 'tempo registrado invalido'}
+        r.status = 500
+        return r.pack()
 
     if u.token is None:
         generate_token(u)
 
-    return generate_response({
+    r.d = {
         'token': u.token,
         'tempo': u.tempo
-    })
-
+    }
+    return r.pack()
