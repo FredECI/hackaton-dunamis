@@ -8,8 +8,8 @@ from hashlib import md5
 from . import db, login_manager
 
 
-def encode_password(senha: str) -> str:
-    return md5(senha.encode()).digest().hex()
+def encode_md5(texto: str) -> str:
+    return md5(texto.encode()).digest().hex()
 
 
 class Usuario(UserMixin, db.Model):
