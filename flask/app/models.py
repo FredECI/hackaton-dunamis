@@ -23,6 +23,7 @@ class Usuario(UserMixin, db.Model):
     hora_inicio = Column(Integer)
     hora_fim = Column(Integer)
     token = Column(String(100))
+    pontos = Column(Integer, default=0)
 
     def get_id(self):
         return self.email
