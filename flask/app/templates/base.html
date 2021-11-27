@@ -2,32 +2,77 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <title>Título</title>
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ url_for('static', filename='sites/img/preguiça-meditando2.png') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='sites/img/preguiça-meditando2.png') }}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>FiFit</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <!-- CSS Files -->
+    <link href="{{ url_for('static', filename='sites/css/material-kit.css') }}?v=2.2.0" rel="stylesheet" />
 
-    <!-- Jquery, Popper e Bootstrap -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
+      <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
     {% block head %}
     {% endblock %}
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <a href="/" class="navbar-brand"><strong>FiFit</strong></a>
-        <!-- resto da navbar -->
-    </nav>
-
-    <div class="container">
-        {% block body %}
-        {% endblock %}
-    </div>
-
-    <footer class="footer">
+    <nav class="navbar navbar-color-on-scroll navbar-transparent fixed-top  navbar-expand-lg " id="sectionsNav">
         <div class="container">
-            <p>Equipe Dunamis 2021 - Desenvolvido para o Hacking.Rio</p>
+            <div class="navbar-translate">
+                <a href="{{ url_for('home.index') }}">
+                  <img src="{{ url_for('static', filename='sites/img/logo-fifit5.png') }}"
+                  width = 350
+                  style = "margin-right: 1rem;" alt="Fifit"> </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="button-container nav-item iframe-extern">
+                        <a href="{{ url_for('auth.register') }}" target="_blank" class="btn  btn-info   btn-round btn-block " >
+                            <i class="material-icons"></i> Página de Cadastro
+                        </a>
+                    </li>
+                    <li class="button-container nav-item iframe-extern" style="margin-left: 1rem;">
+                        <a href="{{ url_for('auth.login') }}" target="_blank" class="btn  btn-info   btn-round btn-block ">
+                            <i class="material-icons"></i> Página de Login
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% block body %}
+    {% endblock %}
+
+    <footer class="footer footer-default">
+        <div class="container">
+            <nav class="float-left">
+                <ul>
+                    <li>
+                        <a href="{{ url_for('home.index') }}">
+                            FiFit
+                        </a>
+                        </li>
+                        <li>
+                        <a href="https://www.portaldaindustria.com.br/sesi/">
+                            SESI
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </footer>
+
+    {% block js %}
+    {% endblock %}
 
 </body>
 </html>

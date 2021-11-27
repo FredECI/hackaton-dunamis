@@ -31,7 +31,7 @@ def login():
 
         flash("Credenciais incorretas", "danger")
 
-    return render_template("base.html")
+    return render_template("auth/login.html")
 
 
 @auth.route("/register", methods=["GET", "POST"])
@@ -59,4 +59,4 @@ def register():
 
                 login_user(u)
 
-    return render_template('base.html')
+    return render_template('auth/register.html')
