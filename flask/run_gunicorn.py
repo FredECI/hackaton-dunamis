@@ -9,7 +9,7 @@ class FlaskAPP(Application):
         super().__init__()
 
     def init(self, parser, opts, args):
-        path = os.path.join(os.getcwd(), 'gunicorn.conf.py')
+        path = os.path.join(os.getcwd(), 'flask', 'gunicorn.conf.py')
         self.load_config_from_module_name_or_filename(path)
 
     def load(self):
