@@ -5,19 +5,17 @@
     <title>Title</title>
 </head>
 
-<script>
-    var editorExtensionId = "fmgnncloidgninolhkibngfakmichhnp";
 
-// Make a simple request:
-    chrome.runtime.sendMessage(editorExtensionId, {clock_countdown: "26/11/2021"},
-  function(response) {
-    if (!response.success)
-      handleError(url);
-  });
-
-
-</script>
 
 <body>
+
+<button onclick="o()"></button>
+<script>
+    function o() {
+        var data = {clock_countdown: "26/11/2021"};
+        window.postMessage(data, "*");
+    }
+</script>
+
 </body>
 </html>
