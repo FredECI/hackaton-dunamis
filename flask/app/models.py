@@ -2,7 +2,14 @@ from flask_login import UserMixin
 from sqlalchemy import Column, String, Boolean, Integer
 # from flask_login import LoginManager
 
+
+from hashlib import md5
+
 from . import db, login_manager
+
+
+def encode_password(senha: str) -> str:
+    return md5(senha.encode()).digest().decode()
 
 
 class Usuario(UserMixin, db.Model):
@@ -20,7 +27,7 @@ class Usuario(UserMixin, db.Model):
         return self.email
 
     def is_authenticated(self):
-        return True     # se pode fazer login
+        return True  # se pode fazer login
 
     def is_active(self):
         return True
@@ -35,4 +42,3 @@ class Usuario(UserMixin, db.Model):
 @login_manager.user_loader
 def load_user(pk_email):
     return Usuario.query.get(pk_email)
-
