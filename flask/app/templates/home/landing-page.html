@@ -1,0 +1,169 @@
+<!--
+ =========================================================
+ Material Kit PRO - v2.2.0
+ =========================================================
+
+ Product Page: https://www.creative-tim.com/product/material-kit-pro
+ Copyright 2019 Creative Tim (https://www.creative-tim.com)
+
+ Coded by Creative Tim
+
+ =========================================================
+
+ The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="apple-touch-icon" sizes="76x76" href="{{ url_for('static', filename='sites/img/preguiça-meditando2.png') }}">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='sites/img/preguiça-meditando2.png') }}">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>
+    FiFit
+  </title>
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <!-- CSS Files -->
+  <link href="{{ url_for('static', filename='sites/css/material-kit.css') }}?v=2.2.0" rel="stylesheet" />
+
+      <!-- Place this tag in your head or just before your close body tag. -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body class="landing-page sidebar-collapse">
+  <nav class="navbar navbar-color-on-scroll navbar-transparent fixed-top  navbar-expand-lg " id="sectionsNav">
+    <div class="container">
+      <div class="navbar-translate">
+        <a href="{{ url_for('home.index') }}">
+          <img src="{{ url_for('static', filename='sites/img/logo-fifit5.png') }}"
+          width = 350
+          style = "margin-right: 1rem;" alt="Fifit"> </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+          
+          <li class="button-container nav-item iframe-extern">
+            <a href="{{ url_for('auth.register') }}" target="_blank" class="btn  btn-info   btn-round btn-block " >
+              <i class="material-icons"></i> Página de Cadastro
+            </a>
+          </li>
+
+          <li class="button-container nav-item iframe-extern" style="margin-left: 1rem;">
+            <a href="{{ url_for('auth.login') }}" target="_blank" class="btn  btn-info   btn-round btn-block ">
+              <i class="material-icons"></i> Página de Login
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="page-header header-filter" data-parallax="true" style="background-image: url({{ url_for('static', filename='sites/img/sesi-viva-saudável.jpg') }})">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h1 class="title">Fifit, saúde é tudo!</h1>
+          <h4>O seu auxiliador no caminho de uma vida melhor. De mudanças de hábitos até dicas e conhecimentos de fonte segura, a sua ferramenta pra uma vida mais saudavel</h4>
+          <br>
+          
+            <a href="" target="_blank" class="btn btn-danger btn-raised btn-lg">
+            <i class="fa fa-download"></i> Baixar FiFit
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="main main-raised">
+    <div class="container">
+      <div class="section text-center">
+        <div class="row">
+          <div class="col-md-8 ml-auto mr-auto">
+            <h2 class="title">Três motivos para cuidar da sua saúde o quanto antes!</h2>
+            <!-- <h5 class="description">This is the paragraph where you can write more details about your product. Keep you user engaged by providing meaningful information. Remember that by this time, the user is curious, otherwise he wouldn&apos;t scroll to get here. Add a button if you want the user to see more.</h5> -->
+          </div>
+        </div>
+        <div class="features">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="info">
+                <div class="icon icon-info">
+                  <i class="material-icons">sentiment_very_satisfied</i>
+                </div>
+                <h4 class="info-title">Melhore sua Qualidade de Vida</h4>
+                <p>Seja a melhor versão de si mesmo! Com mudanças simples de habitos, você pode se sentir com mais energia e mais produtivo. </p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="info">
+                <div class="icon icon-success">
+                  <i class="material-icons">favorite</i>
+                </div>
+                <h4 class="info-title">Aumente sua Saúde Emocional</h4>
+                <p>Uma alimentação balanceada e exercícios físicos constantes estão diretamente associados com diminuição no estresse e nas probabilidades de desenvolver transtornos como ansiedade e depressão.</p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="info">
+                <div class="icon icon-danger">
+                  <i class="material-icons">directions_run</i>
+                </div>
+                <h4 class="info-title">Cuide do seu Futuro</h4>
+                <p>Com mudanças no presente você é capaz de diminuir as chances de complicações de saúde futuramente! É a melhor chance de conseguir um envelhecimento saudável e uma terceira idade mais feliz.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="footer footer-default">
+    <div class="container">
+      <nav class="float-left">
+        <ul>
+          <li>
+            <a href="{{ url_for('home.index') }}">
+              FiFit
+            </a>
+          </li>
+          <li>
+            <a href="https://www.portaldaindustria.com.br/sesi/">
+              SESI
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+        <!--   Core JS Files   -->
+  <script src="{{ url_for('static', filename='sites/js/core/jquery.min.js') }}" type="text/javascript"></script>
+  <script src="{{ url_for('static', filename='sites/js/core/popper.min.js') }}" type="text/javascript"></script>
+  <script src="{{ url_for('static', filename='sites/js/core/bootstrap-material-design.min.js') }}" type="text/javascript"></script>
+  <script src="{{ url_for('static', filename='sites/js/plugins/moment.min.js') }}"></script>
+  <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+  <script src="{{ url_for('static', filename='sites/js/plugins/bootstrap-datetimepicker.js') }}" type="text/javascript"></script>
+  <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+  <script src="{{ url_for('static', filename='sites/js/plugins/nouislider.min.js') }}" type="text/javascript"></script>
+  <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
+  <script src="{{ url_for('static', filename='sites/js/plugins/bootstrap-tagsinput.js') }}"></script>
+  <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
+  <script src="{{ url_for('static', filename='sites/js/plugins/bootstrap-selectpicker.js') }}" type="text/javascript"></script>
+  <!--	Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+  <script src="{{ url_for('static', filename='sites/js/plugins/jasny-bootstrap.min.js') }}" type="text/javascript"></script>
+  <!--	Plugin for Small Gallery in Product Page -->
+  <script src="{{ url_for('static', filename='sites/js/plugins/jquery.flexisel.js') }}" type="text/javascript"></script>
+  <!-- Plugins for presentation and navigation  -->
+  <script src="{{ url_for('static', filename='sites/demo/modernizr.js') }}" type="text/javascript"></script>
+  <script src="{{ url_for('static', filename='sites/demo/vertical-nav.js') }}" type="text/javascript"></script>
+  <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
+  <script src="{{ url_for('static', filename='sites/js/material-kit.js') }}?v=2.2.0" type="text/javascript"></script>
+</body>
+</html>
