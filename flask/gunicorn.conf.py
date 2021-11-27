@@ -21,8 +21,8 @@ import multiprocessing
 #       range.
 #
 
-# bind = '0.0.0.0:8080'
-bind = 'unix:flask.sock'
+bind = '0.0.0.0:8080'
+# bind = 'unix:flask.sock'
 backlog = os.environ['GUNICORN_BACKLOG'] if 'GUNICORN_BACKLOG' in os.environ else 2048
 
 #
