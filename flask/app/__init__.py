@@ -3,6 +3,7 @@ from flask import Flask
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from flask_cors import CORS
 
 # module imports
 
@@ -39,6 +40,8 @@ def create_app(config_name: str):
 
     # configuracoes para erro
     # app.register_error_handler(500, pagina_de_erro)
+
+    CORS(app)
 
     # blueprints
     from .api import api as api_blueprint
