@@ -11,8 +11,8 @@ def index():
     return render_template('base.html')
 
 
-@login_required
 @home.route('/dashboard', methods=['GET', 'POST'])
+@login_required
 def dashboard():
     return render_template('base.html')
 

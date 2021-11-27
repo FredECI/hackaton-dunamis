@@ -27,7 +27,7 @@ def login():
             u = Usuario.query.filter_by(email=email, senha=senha_hash).first()
             if u is not None:
                 login_user(u)
-                return redirect(url_for('home.index'))
+                return redirect(url_for('home.dashboard'))
 
         flash("Credenciais incorretas", "danger")
 
