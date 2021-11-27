@@ -24,7 +24,20 @@ deactivate
 4. Exporte as variáveis de ambiente necessárias:
 ```bash
 set MYSQL_ORI=mysql://admin:agFYuFEeYrsvBjc4Nymf@dev.cjsnzeyi5n0a.us-east-1.rds.amazonaws.com:3306/dev
+set FLASK_APP=run.py
+set FLASK_ENV=production
+set FLASK_DEBUG=0
 ...
 ```
 
-5. Execute ```flask run``` para iniciar o flask.
+5. Para subir o flask:
+
+```bash
+# development
+flask run
+
+# production
+python3 run_gunicorn.py
+
+
+```

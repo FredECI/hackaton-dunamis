@@ -1,21 +1,21 @@
 import os
-from abc import ABC
 
 from gunicorn.app.base import Application
-from app import create_app
-from config import app_config
+import app
 
 
-class FlaskAPP(Application, ABC):
+class FlaskAPP(Application):
     def __init__(self):
         super().__init__()
 
+    def init(self, parser, opts, args):
+        self.load_config_from_module_name_or_filename('gunicorn.conf.py')
+
     def load(self):
         config_name = os.getenv('FLASK_ENV', 'development')
-        _app = create_app(config_name)
-        return _app
+        return app.create_app(config_name)
 
 
 if __name__ == '__main__':
-    a = FlaskAPP()
-    a.run()
+    _app = FlaskAPP()
+    _app.run()
