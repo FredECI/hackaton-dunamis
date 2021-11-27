@@ -9,7 +9,7 @@ from . import db, login_manager
 
 
 def encode_password(senha: str) -> str:
-    return md5(senha.encode()).digest().decode()
+    return md5(senha.encode()).digest().hex()
 
 
 class Usuario(UserMixin, db.Model):
