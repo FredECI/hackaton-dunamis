@@ -16,3 +16,7 @@ def index():
 def dashboard():
     return render_template('base.html')
 
+
+@home.route('/exercise', methods=['GET', "POST"])
+def exercise():
+    return render_template('base.html')
