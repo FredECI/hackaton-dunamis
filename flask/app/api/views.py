@@ -38,7 +38,13 @@ def generate_token(user: Usuario):
 @api.route('/api/tempo', methods=['GET'])
 def tempo():
     r = Response()
-    token = request.args.get('token')
+
+    if request.json:
+        args = request.json
+    else:
+        args = request.args
+
+    token = args.get('token')
     if token is None:
         r.d = {'error': 'token nao encontrado'}
         r.status = 400
@@ -69,8 +75,13 @@ def tempo():
 def login():
     r = Response()
 
-    usuario = request.args.get('usuario')
-    senha = request.args.get('senha')
+    if request.json:
+        args = request.json
+    else:
+        args = request.args
+
+    usuario = args.get('usuario')
+    senha = args.get('senha')
 
     if usuario is None or senha is None:
         r.d = {'error': 'usuario e senha nao encontrados'}
