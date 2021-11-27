@@ -1,3 +1,16 @@
 .roboto{
     font-family: 'Roboto', sans-serif;
 }
+
+@font-face {
+    font-family: sevenSegment;
+    src: url(seven-segment.ttf);
+}
+
+.counter-style{
+   font-family: sevenSegment;
+   font-size: 4em;
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+}
