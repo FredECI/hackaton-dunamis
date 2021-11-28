@@ -126,10 +126,8 @@ def pontos():
 
     p = request.args.get('pontos')
     if p is not None and p.isnumeric():
-        p_int = int(p)
-
         user: Usuario = current_user
-        user.pontos = p_int
+        user.pontos = user.pontos + int(p)
         db.session.add(user)
         db.session.commit()
 

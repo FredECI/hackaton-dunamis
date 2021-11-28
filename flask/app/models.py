@@ -26,6 +26,7 @@ class Usuario(UserMixin, db.Model):
     pontos = Column(Integer, default=0)
     last_update = Column(String(60))
     genero = Column(String(1))
+    quantidade = Column(Integer, default=0)
 
     def get_id(self):
         return self.email

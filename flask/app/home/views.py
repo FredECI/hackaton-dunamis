@@ -82,6 +82,9 @@ def exercise():
         if diff_sec > duracao_min * 60:  # era antigo, reset
             tempo.token = token
             tempo.hora = hora_atual.isoformat()
+
+            user.quantidade = user.quantidade + 1
+            db.session.add(user)
             db.session.add(tempo)
             db.session.commit()
         else:   # tempo correndo ainda
