@@ -110,7 +110,7 @@ def login():
 
 @api.route("/api/mensagem", methods=['GET', "POST"])
 def mensagem():
-    arquivo = os.path.join(os.getcwd(), 'mensagem.json')
+    arquivo = os.path.join(os.path.dirname(__file__), 'mensagem.json')
     with open(arquivo, 'r', encoding='utf-8') as f:
         lista = json.load(f)
 
