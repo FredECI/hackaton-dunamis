@@ -1,0 +1,35 @@
+{
+    "name": "FiFit",
+    "description": "Transforma o dia a dia de trabalho em uma realidade saudável e segura.",
+    "author": "Dunamis Company",
+    "version": "1.0.0",
+    "manifest_version": 3,
+    "icons": {
+        "16": "/images/fifit_logo_preg_16.png",
+        "48": "/images/fifit_logo_preg_48.png",
+        "128": "/images/fifit_logo_preg_128.png"
+    },
+    "action": {
+        "default_popup": "html/popup.html",
+        "default_title": "Fifit",
+        "default_icon":{
+            "16": "/images/fifit_logo_preg_16.png",
+            "48": "/images/fifit_logo_preg_48.png",
+            "128": "/images/fifit_logo_preg_128.png"
+        }
+    },
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["js/jquery-3.6.0.min.js", "/js/content.js"]
+        },
+        {
+            "matches": ["*://*.fifit.com.br/exercise*"],
+            "js": ["/js/exercise.js"]
+        }
+    ],
+    "background":{
+        "service_worker": "js/background.js"
+    },
+    "permissions": ["tabs", "alarms", "notifications", "webRequest", "storage", "scripting"]
+}
