@@ -22,7 +22,7 @@ def dashboard():
 @home.route('/exercise', methods=['GET', "POST"])
 def exercise():
     # pegando token
-    if current_user.is_authenticated():
+    if current_user.is_authenticated:
         token = current_user.token
         user: Usuario = current_user
     else:

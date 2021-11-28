@@ -108,11 +108,11 @@ def login():
     return r.pack()
 
 
-@api.route("/api/pergunta", methods=['GET', "POST"])
-def pergunta():
+@api.route("/api/mensagem", methods=['GET', "POST"])
+def mensagem():
     arquivo = os.path.join(os.getcwd(), 'mensagem.json')
     with open(arquivo, 'r', encoding='utf-8') as f:
         lista = json.load(f)
 
-    ret = {'pergunta': choice(lista)}
+    ret = {'mensagem': choice(lista)}
     return jsonify(ret)
