@@ -4,7 +4,7 @@ var counter = document.getElementById("start_counter")
 
 counter.addEventListener("click", function(){
     isTracking = true;
-    var audio = new Audio("/static/exercise/audio/relaxed-guitar.mp3");
+    let audio = new Audio("/assets/audio/relaxed-guitar.mp3");
     audio.loop = true;
     audio.play();
     counter.style.display="none";
@@ -17,9 +17,9 @@ document.addEventListener('keydown', (event) => {
     console.log("code: " + event.code + " key: " + event.key);
     // Alert the key name and key code on keydown
     switch(event.code){
-        
+
         case "F5":
-            score = score += 50;
+            score = score += 40;
             break;
         case "F1":
         case "F2":
@@ -47,19 +47,26 @@ document.addEventListener('keydown', (event) => {
             score = score += 30;
             break;
         default:
-            score = score += 2;
+            score = score += 3;
     }
     event.preventDefault();
 }, false);
 
 document.body.addEventListener("mousemove", function(event) {
+
     if (! isTracking) return;
-    score = score += 0.02;
+    score = score += 0.05;
     console.log("mousemoved");
 });
 
 document.addEventListener("visibilitychange", function (event){
-    if (! isTracking) return;
-    document.visibilityState === 'visible'
 
+    if (! isTracking) return;
+    score = score + 120;
+});
+
+window.addEventListener("resize", function (event){
+
+    if (! isTracking) return;
+    score = score + 80;
 });

@@ -15,9 +15,8 @@
         <div class="col-md-10 ml-auto mr-auto">
           <div class="card card-signup">
             <h2 class="card-title text-center roboto">Cadastro</h2>
-            <div class="card-body">
+            <div class="card-body" style="color: #AAAAAA;">
                 <div class="col-md-5 mr-auto" style="max-width: 100%">
-
                   <form class="form" id="idform" method="post" action="">
                     <div class="form-group">
                       <div class="input-group">
@@ -33,10 +32,17 @@
                       <div class="input-group">
                         <div class="input-group-prepend">
                           <span class="input-group-text">
-                            <i class="material-icons">face</i>
+                            <i class="material-icons">person</i>
                           </span>
                         </div>
-                        <input type="text" id="genero" name="genero" class="form-control" placeholder="Gênero...">
+                        <div class="form-group select-wizard">
+                          <div class="input-group">
+                            <select id="genderPicker" type="text" class="selectpicker" data-size="2" data-style="select-with-transition" title="Gênero...">
+                              <option value="m"> Masculino </option>
+                              <option value="f"> Feminino </option>
+                            </select>
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div class="form-group">
@@ -71,4 +77,28 @@
       </div>
     </div>
     </div>
+{% endblock %}
+
+{% block js %}
+    <script src="{{ url_for('static', filename='sites/js/core/jquery.min.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='sites/js/core/popper.min.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='sites/js/core/bootstrap-material-design.min.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='sites/js/plugins/moment.min.js') }}"></script>
+    <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+    <script src="{{ url_for('static', filename='sites/js/plugins/bootstrap-datetimepicker.js') }}" type="text/javascript"></script>
+    <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+    <script src="{{ url_for('static', filename='sites/js/plugins/nouislider.min.js') }}" type="text/javascript"></script>
+    <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
+    <script src="{{ url_for('static', filename='sites/js/plugins/bootstrap-tagsinput.js') }}"></script>
+    <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
+    <script src="{{ url_for('static', filename='sites/js/plugins/bootstrap-selectpicker.js') }}" type="text/javascript"></script>
+    <!--	Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+    <script src="{{ url_for('static', filename='sites/js/plugins/jasny-bootstrap.min.js') }}" type="text/javascript"></script>
+    <!--	Plugin for Small Gallery in Product Page -->
+    <script src="{{ url_for('static', filename='sites/js/plugins/jquery.flexisel.js') }}" type="text/javascript"></script>
+    <!-- Plugins for presentation and navigation  -->
+    <script src="{{ url_for('static', filename='sites/demo/modernizr.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='sites/demo/vertical-nav.js') }}" type="text/javascript"></script>
+    <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
+    <script src="{{ url_for('static', filename='sites/js/material-kit.js') }}?v=2.2.0" type="text/javascript"></script>
 {% endblock %}

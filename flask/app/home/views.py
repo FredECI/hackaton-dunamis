@@ -44,6 +44,7 @@ def exercise():
     hora_max = user.hora_fim
     datetime_now = datetime.now()
     hora_now = datetime_now.hour
+    print(hora_now, hora_max, hora_min)
     if not (hora_min <= hora_now < hora_max):
         return render_template(
             'home/exercise-page.html', duracao_min=0, duracao_seg=0,
