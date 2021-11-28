@@ -5,6 +5,42 @@ from .. import db
 from typing import Dict, Union, List
 
 
+def get_doencas():
+    res = {
+        "Alcoolismo": 0,
+        "Cancer de Mama": 0,
+        "Obesidade": 0,
+        "Cardiaco": 0,
+        "Hipertensão": 0,
+        "Diabetes": 0,
+        "Cancer de Pulmão": 0,
+    }
+
+    lista: List[Resposta] = Resposta.query.all()
+
+    for r in lista:
+        x = int(r.id_pergunta)
+        if x == 1 or x == 3 or x == 5:
+            res["Alcoolismo"] += 1
+
+        elif x == 9:
+            res["Cancer de Mama"] += 1
+
+        elif x == 10 or x == 11:
+            res["Obesidade"] += 1
+
+        elif r.id_pergunta == 20:
+            res["Cardiaco"] += 1
+            res["Obesidade"] += 1
+            res["Hipertensão"] += 1
+            res["Diabetes"] += 1
+
+        elif r.id_pergunta == 21:
+            res["Cancer de Pulmão"] += 1
+
+    return res
+
+
 def get_status(token_ou_object: Union[Usuario, str]):
     """
     Esses são os problemas ou vantagens relativos ao banco de perguntas a seguir:
@@ -82,7 +118,7 @@ def get_scoreboard() -> Dict[str, int]:
     ).order_by(
         Usuario.pontos.desc()
     ).limit(
-        7
+        5
     ).all()
 
     pior: Usuario = db.session.query(
@@ -97,8 +133,16 @@ def get_scoreboard() -> Dict[str, int]:
         pior_pontuacao = pior.pontos
 
     return {
-        u.nome: - (pior_pontuacao - u.pontos) for u in users
+        str(u.nome).capitalize(): - (pior_pontuacao - u.pontos) for u in users
     }
+
+
+def get_empregados() -> int:
+    return Usuario.query.filter_by(gestor=0).count()
+
+
+def get_gestores() -> int:
+    return Usuario.query.filter_by(gestor=1).count()
 
 
 

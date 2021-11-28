@@ -33,6 +33,7 @@ def login():
 @auth.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == 'POST':
+        print(request.form)
         form: dict = request.form
         nome: str = form.get('nome')
         genero: str = form.get('genderPicker')

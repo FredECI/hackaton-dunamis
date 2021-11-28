@@ -46,8 +46,8 @@
                             <i class="material-icons"></i> Login
                         </a>
                     </li>
-                    {% else %}
-                    <li class="button-container nav-item iframe-extern">
+                    {% elif current_user.gestor == 1 %}
+                    <li class="button-container nav-item iframe-extern" style="margin-right: 5px">
                         <a href="{{ url_for('dash.dashboard') }}" class="btn  btn-info  btn-round btn-block">
                             <i class="material-icons"></i>
                             Olá, {{ current_user.nome }}!
@@ -55,6 +55,8 @@
                             Acesse o Dashboard
                         </a>
                     </li>
+                    {% endif %}
+                    {% if current_user.is_authenticated %}
                     <li class="button-container nav-item iframe-extern">
                         <a href="{{ url_for('auth.logout') }}" class="btn btn-info btn-round btn-block">
                             <i class="material-icons"></i> Sair
