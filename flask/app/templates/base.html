@@ -17,6 +17,10 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     {% block head %}
     {% endblock %}
+    <style>
+        .btn-fundo { background-color: rgb(245, 124, 0); }
+        .btn-fundo:hover { background-color: rgb(245, 124, 0);opacity: 0.8; }
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-color-on-scroll navbar-transparent fixed-top  navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
@@ -37,18 +41,18 @@
                 <ul class="navbar-nav ml-auto">
                     {% if not current_user.is_authenticated %}
                     <li class="button-container nav-item iframe-extern">
-                        <a href="{{ url_for('auth.register') }}" class="btn  btn-info   btn-round btn-block " >
+                        <a href="{{ url_for('auth.register') }}" class="btn btn-fundo btn-round btn-block " >
                             <i class="material-icons"></i> Cadastro
                         </a>
                     </li>
                     <li class="button-container nav-item iframe-extern" style="margin-left: 1rem;">
-                        <a href="{{ url_for('auth.login') }}" class="btn  btn-info   btn-round btn-block ">
+                        <a href="{{ url_for('auth.login') }}" class="btn btn-fundo btn-round btn-block ">
                             <i class="material-icons"></i> Login
                         </a>
                     </li>
                     {% elif current_user.gestor == 1 %}
                     <li class="button-container nav-item iframe-extern" style="margin-right: 5px">
-                        <a href="{{ url_for('dash.dashboard') }}" class="btn  btn-info  btn-round btn-block">
+                        <a href="{{ url_for('dash.dashboard') }}" class="btn btn-fundo btn-round btn-block">
                             <i class="material-icons"></i>
                             Olá, {{ current_user.nome }}!
                             {% if current_user.gestor %}<strong>(G)</strong>{% endif %}
@@ -58,7 +62,7 @@
                     {% endif %}
                     {% if current_user.is_authenticated %}
                     <li class="button-container nav-item iframe-extern">
-                        <a href="{{ url_for('auth.logout') }}" class="btn btn-info btn-round btn-block">
+                        <a href="{{ url_for('auth.logout') }}" class="btn btn-fundo btn-round btn-block">
                             <i class="material-icons"></i> Sair
                         </a>
                     </li>
@@ -75,12 +79,12 @@
             <nav class="float-left">
                 <ul>
                     <li>
-                        <a href="{{ url_for('home.index') }}">
+                        <a href="{{ url_for('home.index') }}" target="_blank">
                             FiFit
                         </a>
                         </li>
                         <li>
-                        <a href="https://www.firjan.com.br/sesi/">
+                        <a href="https://www.firjan.com.br/sesi/" target="_blank">
                             Firjan / SESI
                         </a>
                     </li>
