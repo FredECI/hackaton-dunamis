@@ -48,7 +48,7 @@
                     </li>
                     {% else %}
                     <li class="button-container nav-item iframe-extern">
-                        <a href="{{ url_for('home.dash') }}" class="btn  btn-info  btn-round btn-block">
+                        <a href="{{ url_for('home.index') }}" class="btn  btn-info  btn-round btn-block">
                             <i class="material-icons"></i>
                             Olá, {{ current_user.nome }}!
                             {% if current_user.gestor %}<i class="fas fa-star"></i>{% endif %}

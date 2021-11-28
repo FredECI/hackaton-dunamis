@@ -5,6 +5,6 @@ from . import dash
 from .utils import get_scoreboard
 
 
-@dash.route('/aiyudeygfiosaf', methods=['GET'])
-def aiyudeygfiosaf():
-    return jsonify(get_scoreboard())
+@dash.route('/dashboard', methods=['GET', 'POST'])
+def dashboard():
+    return render_template('home/index.html')

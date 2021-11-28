@@ -59,6 +59,14 @@ class Tempo(db.Model):
     hora = Column(String(50))
 
 
+class Pergunta(db.Model):
+    __tablename__ = 'pergunta'
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    pergunta = Column(String(50))
+    resposta = Column(Boolean)
+
+
 @login_manager.user_loader
 def load_user(pk_email):
     return Usuario.query.get(pk_email)
