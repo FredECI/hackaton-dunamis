@@ -27,9 +27,12 @@
         <div class="container">
             <div class="navbar-translate">
                 <a href="{{ url_for('home.index') }}">
-                  <img src="{{ url_for('static', filename='sites/img/logo-fifit5.png') }}"
+                  <img class="d-none d-md-block" src="{{ url_for('static', filename='sites/img/logo-fifit5.png') }}"
                   width = 350
-                  style = "margin-right: 1rem;" alt="Fifit"> </a>
+                  style = "margin-right: 1rem;" alt="Fifit">
+                  <img class="d-block d-md-none" src="{{ url_for('static', filename='sites/img/fifit_logo_preg_48.png') }}"
+                  style = "margin-right: 1rem;" alt="Fifit">
+                </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="navbar-toggler-icon"></span>
