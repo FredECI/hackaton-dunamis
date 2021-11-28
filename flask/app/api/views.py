@@ -112,7 +112,7 @@ def login():
 
 @api.route("/api/mensagem", methods=['GET', "POST"])
 def mensagem():
-    ret = {'mensagem': choice(get_mensagens())}
+    ret = {'mensagem': get_mensagens()}
     return jsonify(ret)
 
 
