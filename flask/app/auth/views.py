@@ -35,6 +35,7 @@ def register():
     if request.method == 'POST':
         form: dict = request.form
         nome: str = form.get('nome')
+        genero: str = form.get('genderPicker')
         email: str = form.get('email')
         senha: str = form.get('senha')
         if nome is not None and email is not None and senha is not None:
@@ -50,6 +51,7 @@ def register():
                 u.gestor = 0
                 u.hora_inicio = 9
                 u.hora_fim = 17
+                u.genero = genero
 
                 db.session.add(u)
                 db.session.commit()

@@ -48,7 +48,9 @@ def exercise():
     if not (hora_min <= hora_now < hora_max):
         return render_template(
             'home/exercise-page.html', duracao_min=0, duracao_seg=0,
-            ja_comecou=False, mensagem="Não é a hora programada ainda. Volte novamente mais tarde")
+            ja_comecou=False,
+            mensagem="Não é a hora programada ainda. Volte novamente mais tarde (%02d:00 - %02d:00)" %
+                     (hora_min, hora_max))
 
     # pegando o tempo antigo
     duracao_min = request.args.get('tempo', '10')
