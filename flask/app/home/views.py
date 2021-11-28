@@ -53,7 +53,7 @@ def exercise():
     duracao_min = request.args.get('tempo', '10')
     duracao_seg = 0
     if not duracao_min.isnumeric():     # NaN
-        print("duracao invalida")
+        # print("duracao invalida")
         return redirect(url_for('home.index'))
     else:
         duracao_min = int(duracao_min)
@@ -68,7 +68,7 @@ def exercise():
         tempo.token = token
         tempo.hora = datetime_now.isoformat()
 
-        print(tempo.token, tempo.hora)
+        # print(tempo.token, tempo.hora)
         db.session.add(tempo)
         db.session.commit()
 
@@ -111,7 +111,7 @@ def pesquisa():
 
         # colocando as respostas novas
         for entradas in request.form:
-            print(entradas)
+            # print(entradas)
             id_pergunta = entradas.lstrip('input-')
             if id_pergunta.isnumeric():
                 r = Resposta()
@@ -123,12 +123,16 @@ def pesquisa():
         db.session.commit()
         return render_template('home/obrigado.html')
 
-    eh_homem = user.genero.lower() == 'm'
-
     perguntas: List[Pergunta] = Pergunta.query.all()
-    dict_perguntas = {
-        o.id: o.texto for o in perguntas if eh_homem and o.categoria.lower() != 'filho'
-    }
+
+    if user.genero.lower() == 'm':
+        dict_perguntas = {
+            o.id: o.texto for o in perguntas if o.categoria.lower() != 'filho'
+        }
+    else:
+        dict_perguntas = {
+            o.id: o.texto for o in perguntas
+        }
 
     return render_template('home/form-page.html', perguntas=dict_perguntas)
 

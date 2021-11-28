@@ -1,13 +1,13 @@
-from ..models import Usuario, Pergunta, Resposta
+from ..models import Usuario, Resposta
 from .. import db
 
 
 from typing import Dict, Union, List
 
 
-def get_problemas(token_ou_object: Union[Usuario, str]):
+def get_status(token_ou_object: Union[Usuario, str]):
     """
-    Esses são os problemas relativos ao banco de perguntas a seguir:
+    Esses são os problemas ou vantagens relativos ao banco de perguntas a seguir:
 
     1,  Você consome bebida alcóolica?,                                             alcoolismo
     2,  Alguma vez o(a) senhor(a) sentiu que deveria diminuir ou parar de beber?,   alcoolismo
@@ -26,22 +26,53 @@ def get_problemas(token_ou_object: Union[Usuario, str]):
     23, Você tem alguma doença crônica ou comorbidade?,     cronica
     """
 
-    doencas = []
+    res = []
 
     if isinstance(token_ou_object, Usuario):
         token = token_ou_object.token
+        genero = token_ou_object.genero
     else:
+        user: Usuario = Usuario.query.filter_by(token=token_ou_object).first()
+        if user is None:
+            return []
         token = token_ou_object
+        genero = user.genero
 
     respostas: List[Resposta] = Resposta.query.filter_by(token_pessoa=token).all()
-    respostas_id_set:set = {x.id_pergunta for x in respostas}
+    respostas_id_set: set = {x.id_pergunta for x in respostas}
 
     # analisando CAGE
+    CAGE = False
     if 1 in respostas_id_set and len(respostas_id_set.intersection({2, 3, 4, 5})) > 2:
-        doencas.append("Alcoolismo preocupante, CAGE positivo")
+        CAGE = True
+        res.append("Alcoolismo preocupante, CAGE positivo")
 
+    # analisando feminino
+    if genero == 'f':
+        if {7, 8} in respostas_id_set:
+            res.append('-7% no risco de cancer de mama')
 
+        if CAGE or 9 in respostas_id_set:
+            res.append("RR de 1.4 para cancer de mama")
 
+        if 20 not in respostas_id_set:
+            res.append("Sedentarismo: Fator de risco para doenças do sist. Circulatório, obesidade, hipertensão, diabates...")
+
+    if 11 in respostas_id_set:
+        res.append("Risco de doença crônica ou comorbidade")
+    elif 10 in respostas_id_set:
+        res.append("Grande risco de doença crônica ou comorbidade")
+
+    if 23 in respostas_id_set:
+        res.append("Maior risco para desenvolver outra doença crônica ou comorbidade")
+
+    if 21 in respostas_id_set:
+        res.append("Maior risco para cancer de pulmão, doença de sistema circulatório...")
+
+    if 22 not in respostas_id_set:
+        res.append("Maior risco para DCNT")
+
+    return res
 
 
 def get_scoreboard() -> Dict[str, int]:
