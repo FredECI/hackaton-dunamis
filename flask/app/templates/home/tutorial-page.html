@@ -30,6 +30,10 @@
 
       <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <style>
+        .btn-fundo { background-color: rgb(245, 124, 0); }
+        .btn-fundo:hover { background-color: rgb(245, 124, 0);opacity: 0.8; }
+    </style>
     {% block head %}
     {% endblock %}
 </head>
@@ -55,7 +59,7 @@
           
 
           <li class="button-container nav-item iframe-extern" style="margin-left: 1rem;">
-            <a href="{{ url_for('home.index') }}" class="btn  btn-info   btn-round btn-block">
+            <a href="{{ url_for('home.index') }}" class="btn  btn-fundo   btn-round btn-block">
               <i class="material-icons"></i> Home
             </a>
           </li>

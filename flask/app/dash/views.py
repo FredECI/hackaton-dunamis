@@ -2,7 +2,7 @@ from flask import render_template, redirect, url_for
 from flask_login import current_user, login_required
 
 from . import dash
-from .utils import get_scoreboard, get_empregados, get_gestores, get_doencas
+from ..utils import get_scoreboard, get_empregados, get_gestores, get_doencas
 
 
 @login_required
