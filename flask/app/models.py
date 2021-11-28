@@ -1,5 +1,5 @@
 from flask_login import UserMixin
-from sqlalchemy import Column, String, Boolean, Integer, DateTime
+from sqlalchemy import Column, String, Boolean, Integer
 # from flask_login import LoginManager
 
 
@@ -19,12 +19,13 @@ class Usuario(UserMixin, db.Model):
     nome = Column(String(120))
     senha = Column(String(128))
     admin = Column(Boolean, default=False)
-    gestor = Column(String(50))
+    gestor = Column(Boolean, default=False)
     hora_inicio = Column(Integer)
     hora_fim = Column(Integer)
     token = Column(String(100))
     pontos = Column(Integer, default=0)
     last_update = Column(String(60))
+    genero = Column(String(1))
 
     def get_id(self):
         return self.email
@@ -63,8 +64,16 @@ class Pergunta(db.Model):
     __tablename__ = 'pergunta'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    pergunta = Column(String(50))
-    resposta = Column(Boolean)
+    texto = Column(String(200))
+    categoria = Column(String(50))
+
+
+class Resposta(db.Model):
+    __tablename__ = 'resposta'
+
+    token_pessoa = Column(String(60))
+    id_pergunta = Column(Integer)
+    ident = Column(String(70), primary_key=True)
 
 
 @login_manager.user_loader

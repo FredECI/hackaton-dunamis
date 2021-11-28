@@ -2,21 +2,17 @@ from flask import render_template, request, redirect, url_for
 from flask_login import login_required, current_user
 
 from . import home
-from ..models import Usuario, Tempo
+from ..models import Usuario, Tempo, Pergunta, Resposta
 from .. import db
+from ..api.views import generate_token
 
 from datetime import datetime, timedelta
+from typing import List
 
 
 @home.route("/", methods=['GET', 'POST'])
 def index():
     return render_template('home/index.html')
-
-
-@home.route('/dash', methods=['GET', 'POST'])
-@login_required
-def dashboard():
-    return render_template('base.html')
 
 
 @home.route('/exercise', methods=['GET', "POST"])
@@ -27,10 +23,10 @@ def exercise():
         user: Usuario = current_user
     else:
         token = request.args.get('token')
-        if token is not None:
+        if token is None:
             return redirect(url_for('home.index'))
         user: Usuario = Usuario.query.filter_by(token=token).first()
-        if user is not None:
+        if user is None:
             return redirect(url_for('home.index'))
 
     # verificando se pode entrar nessa hora
@@ -38,7 +34,7 @@ def exercise():
     hora_max = user.hora_fim
     datetime_now = datetime.now()
     hora_now = datetime_now.hour
-    if not (hora_min <= hora_now <= hora_max):
+    if not (hora_min <= hora_now < hora_max):
         return render_template(
             'home/exercise-page.html', duracao_min=0, duracao_seg=0,
             ja_comecou=False, mensagem="Não é a hora programada ainda. Volte novamente mais tarde")
@@ -57,9 +53,11 @@ def exercise():
     if tempo is None or tempo.hora is None:
         if tempo is None:
             tempo = Tempo()
-            tempo.token = token
+
+        tempo.token = token
         tempo.hora = datetime_now.isoformat()
 
+        print(tempo.token, tempo.hora)
         db.session.add(tempo)
         db.session.commit()
 
@@ -71,6 +69,7 @@ def exercise():
         diff: timedelta = hora_atual - hora_banco
         diff_sec = diff.seconds % 3600
         if diff_sec > duracao_min * 60:  # era antigo, reset
+            tempo.token = token
             tempo.hora = hora_atual.isoformat()
             db.session.add(tempo)
             db.session.commit()
@@ -83,3 +82,39 @@ def exercise():
     return render_template('home/exercise-page.html',
                            duracao_min=duracao_min, duracao_seg=duracao_seg,
                            ja_comecou=ja_comecou)
+
+
+@home.route("/pesquisa", methods=['GET', "POST"])
+@login_required
+def pesquisa():
+    user: Usuario = current_user
+
+    if request.method == 'POST':
+        token = user.token
+
+        # limpando as pesquisas anteriores
+        Resposta.query.filter_by(token_pessoa=token).delete()
+
+        # colocando as respostas novas
+        for entradas in request.form:
+            print(entradas)
+            id_pergunta = entradas.lstrip('input-')
+            if id_pergunta.isnumeric():
+                r = Resposta()
+                r.token_pessoa = token
+                r.id_pergunta = int(id_pergunta)
+                r.ident = r.token_pessoa + str(r.id_pergunta)
+                db.session.add(r)
+
+        db.session.commit()
+        return render_template('home/obrigado.html')
+
+    eh_homem = user.genero.lower() == 'm'
+
+    perguntas: List[Pergunta] = Pergunta.query.all()
+    dict_perguntas = {
+        o.id: o.texto for o in perguntas if eh_homem and o.categoria.lower() != 'filho'
+    }
+
+    return render_template('home/form-page.html', perguntas=dict_perguntas)
+

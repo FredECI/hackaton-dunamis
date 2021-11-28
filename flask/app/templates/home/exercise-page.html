@@ -46,6 +46,36 @@
           <span class="navbar-toggler-icon"></span>
         </button>
       </div>
+      <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    {% if not current_user.is_authenticated %}
+                    <li class="button-container nav-item iframe-extern">
+                        <a href="{{ url_for('auth.register') }}" class="btn  btn-info   btn-round btn-block " >
+                            <i class="material-icons"></i> Cadastro
+                        </a>
+                    </li>
+                    <li class="button-container nav-item iframe-extern" style="margin-left: 1rem;">
+                        <a href="{{ url_for('auth.login') }}" class="btn  btn-info   btn-round btn-block ">
+                            <i class="material-icons"></i> Login
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="button-container nav-item iframe-extern">
+                        <a href="{{ url_for('dash.dashboard') }}" class="btn  btn-info  btn-round btn-block">
+                            <i class="material-icons"></i>
+                            Olá, {{ current_user.nome }}!
+                            {% if current_user.gestor %}<strong>(G)</strong>{% endif %}
+                            Acesse o Dashboard
+                        </a>
+                    </li>
+                    <li class="button-container nav-item iframe-extern">
+                        <a href="{{ url_for('auth.logout') }}" class="btn btn-info btn-round btn-block">
+                            <i class="material-icons"></i> Sair
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
     </div>
   </nav>
   <div class="page-header header-filter" filter-color="orange" style="background-image: url({{ url_for('static', filename='sites/img/paisagem.jpg') }}); background-size: cover; background-position: top center;">
@@ -63,7 +93,7 @@
                 {{ '%02d:%02d' % (duracao_min, duracao_seg) }}
               </div>
               <div class="card-footer justify-content-center">
-                <a id="start_counter" href="#" onclick="countdown('ten-countdown', {{ duracao_min }}, {{ duracao_seg }});" class="btn btn-info btn-link btn-lg" style="color:blue">Começar</a>
+                <a id="start_counter" href="#" onclick="countdown('ten-countdown', {{ duracao_min }}, {{ duracao_seg }});" class="botao-login" style="margin-top: 15px;padding: 8px 20px;">Começar</a>
               </div>
               <div class="card-body justify-content-center">
               {% if mensagem %}

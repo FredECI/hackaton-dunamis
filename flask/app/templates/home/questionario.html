@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block titulo %}Formulário - FiFit{% endblock %}
+
+{% block body %}
+  <div class="page-header" data-parallax="true" style="background-color: aliceblue;">
+    <div class="container">
+      <div class="row">
+        <a href="{{ url_for("home.index") }}">
+          <img src="{{ url_for('static', filename='sites/img/logo-fifit5.png') }}"
+          width = 350
+          style = "display: block; margin-right: auto; margin-right: auto; margin-bottom: 1rem;"></a>
+        <div class="col-md-8 ml-auto mr-auto">
+          <div class="brand" style="color: rgb(0, 56, 194) ;">
+            <h2>Queremos saber mais sobre sua saúde!</h2>
+            <h3 class="title" style="color: rgb(236, 121, 65) ;">Bem-vindo/a ao FiFit!</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="main main-raised">
+    <div class="section section-basic">
+      <div class="container">
+        <div class="title">
+          <h2>Vamos lá? Let's go, baby!</h2>
+        </div>
+          <form class="form" method="" action="" style="margin: 5rem;">
+
+              <div id="checkRadios">
+                <div class="row">
+                  <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="title">
+                      <h3>Nos ajude a saber mais sobre você marcando as seguintes caixas:</h3>
+                    </div>
+
+                    {% for p in perguntas %}
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input id="i{{ p['id'] }}" name="i{{ p['id'] }}" class="form-check-input" type="checkbox" value="">
+                          {{ p['texto'] }}
+                        <span class="form-check-sign">
+                          <span class="check"></span>
+                        </span>
+                      </label>
+                    </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+              <br/><br/>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="checkbox" value="" checked>
+                  <span class="form-check-sign">
+                    <span class="check"></span>
+                  </span>
+                  Eu aceito os termos e condições.
+                </label>
+              </div>
+            </div>
+            <div class="modal-footer justify-content-center">
+              <button href="javascript:{}" onclick="document.getElementById('idform').submit();" class="botao-login">Finalizar</button>
+            </div>
+          </form>
+        </div>
+  </div>
+{% endblock %}
+
+{% block js %}
+    <script src="{{ url_for('static', filename='sites/js/core/jquery.min.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='sites/js/core/popper.min.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='sites/js/core/bootstrap-material-design.min.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='sites/js/plugins/moment.min.js') }}"></script>
+    <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+    <script src="{{ url_for('static', filename='sites/js/plugins/bootstrap-datetimepicker.js') }}" type="text/javascript"></script>
+    <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+    <script src="{{ url_for('static', filename='sites/js/plugins/nouislider.min.js') }}" type="text/javascript"></script>
+    <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
+    <script src="{{ url_for('static', filename='sites/js/plugins/bootstrap-tagsinput.js') }}"></script>
+    <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
+    <script src="{{ url_for('static', filename='sites/js/plugins/bootstrap-selectpicker.js') }}" type="text/javascript"></script>
+    <!--	Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+    <script src="{{ url_for('static', filename='sites/js/plugins/jasny-bootstrap.min.js') }}" type="text/javascript"></script>
+    <!--	Plugin for Small Gallery in Product Page -->
+    <script src="{{ url_for('static', filename='sites/js/plugins/jquery.flexisel.js') }}" type="text/javascript"></script>
+    <!-- Plugins for presentation and navigation  -->
+    <script src="{{ url_for('static', filename='sites/demo/modernizr.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='sites/demo/vertical-nav.js') }}" type="text/javascript"></script>
+    <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
+    <script src="{{ url_for('static', filename='sites/js/material-kit.js') }}?v=2.2.0" type="text/javascript"></script>
+{% endblock %}
