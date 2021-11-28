@@ -12,6 +12,7 @@ function countdown( elementName, minutes, seconds )
       msLeft = endTime - (+new Date);
       if ( msLeft < 1000 ) {
           element.innerHTML = "Finalizado!";
+          sendPoints();
       } else {
           time = new Date( msLeft );
           hours = time.getUTCHours();
@@ -24,4 +25,14 @@ function countdown( elementName, minutes, seconds )
   element = document.getElementById( elementName );
   endTime = (+new Date) + 1000 * (60*minutes + seconds) + 500;
   updateTimer();
+}
+
+
+function sendPoints() {
+    fetch(`fifit.com.br/api/pontos?p=${score}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    }).then();
 }

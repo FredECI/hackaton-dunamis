@@ -9,6 +9,7 @@ API routes:
 
 
 from flask import jsonify, request, Response
+from flask_login import current_user
 
 from . import api
 from ..models import Usuario, encode_md5
@@ -116,3 +117,20 @@ def mensagem():
 
     ret = {'mensagem': choice(lista)}
     return jsonify(ret)
+
+
+@api.route("/api/pontos", methods=["GET", "POST"])
+def pontos():
+    if not current_user.is_authenticated:
+        return jsonify({})
+
+    p = request.args.get('pontos')
+    if p is not None and p.isnumeric():
+        p_int = int(p)
+
+        user: Usuario = current_user
+        user.pontos = p_int
+        db.session.add(user)
+        db.session.commit()
+
+    return jsonify({})

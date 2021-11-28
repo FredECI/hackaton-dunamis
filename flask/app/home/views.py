@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, url_for
-from flask_login import login_required, current_user
+from flask_login import login_required, current_user, login_user
 
 from . import home
 from ..models import Usuario, Tempo, Pergunta, Resposta
@@ -17,17 +17,27 @@ def index():
 
 @home.route('/exercise', methods=['GET', "POST"])
 def exercise():
-    # pegando token
-    if current_user.is_authenticated:
-        token = current_user.token
-        user: Usuario = current_user
-    else:
-        token = request.args.get('token')
-        if token is None:
-            return redirect(url_for('home.index'))
+    token = request.args.get('token')
+    timing = request.args.get('tempo')
+    # print('token', token)
+    if token is not None:
         user: Usuario = Usuario.query.filter_by(token=token).first()
+        # print("achei um usario: ", user)
         if user is None:
+            # print("usuario none :(")
             return redirect(url_for('home.index'))
+
+        login_user(user)
+        if timing is not None:
+            return redirect(url_for('home.exercise', tempo=timing))
+        return redirect(url_for('home.exercise'))
+
+    else:
+        if not current_user.is_authenticated:
+            return redirect(url_for('home.index'))
+
+        user: Usuario = current_user
+        token = user.token
 
     # verificando se pode entrar nessa hora
     hora_min = user.hora_inicio
@@ -43,6 +53,7 @@ def exercise():
     duracao_min = request.args.get('tempo', '10')
     duracao_seg = 0
     if not duracao_min.isnumeric():     # NaN
+        print("duracao invalida")
         return redirect(url_for('home.index'))
     else:
         duracao_min = int(duracao_min)

@@ -4,7 +4,7 @@ var counter = document.getElementById("start_counter")
 
 counter.addEventListener("click", function(){
     isTracking = true;
-    var audio = new Audio("/assets/audio/relaxed-guitar.mp3");
+    var audio = new Audio("/static/exercise/audio/relaxed-guitar.mp3");
     audio.loop = true;
     audio.play();
     counter.style.display="none";
@@ -53,16 +53,13 @@ document.addEventListener('keydown', (event) => {
 }, false);
 
 document.body.addEventListener("mousemove", function(event) {
-    
     if (! isTracking) return;
     score = score += 0.02;
     console.log("mousemoved");
 });
 
 document.addEventListener("visibilitychange", function (event){
-    
     if (! isTracking) return;
     document.visibilityState === 'visible'
-    console.log(event)
-    console.log('FECHOU ESSA MERDA!');
+
 });
