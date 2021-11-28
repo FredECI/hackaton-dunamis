@@ -101,7 +101,7 @@
                 <div class="card ">
                   <div class="card-header card-header-success card-header-icon">
                     <div class="card-icon">
-                      <i class="material-icons"></i>
+                      <i class="material-icons">verified</i>
                     </div>
                     <h4 class="card-title">Top 5 usuários mais FiFits</h4>
                   </div>
@@ -111,6 +111,13 @@
                         <div class="table-responsive table-sales">
                           <table class="table">
                             <tbody>
+                              <tr>
+                                <td>
+                                  <div class="flag"><b>Posição</b></div>
+                                </td>
+                                <td class="text-right"><b>Nome</b></td>
+                                <td class="text-right"><b>Pontos</b></td>
+                              </tr>
                             {% for usuario in melhores_usuarios %}
                               <tr>
                                 <td>
@@ -129,7 +136,7 @@
 
                   <div class="card-header card-header-success card-header-icon">
                     <div class="card-icon">
-                      <i class="material-icons"></i>
+                      <i class="material-icons">gpp_bad</i>
                     </div>
                     <h4 class="card-title">Top 5 DCNTs mais recorrentes</h4>
                   </div>
@@ -140,6 +147,13 @@
                         <div class="table-responsive table-sales">
                           <table class="table">
                             <tbody>
+                              <tr>
+                                <td>
+                                  <div class="flag"><b>Posição</b></div>
+                                </td>
+                                <td class="text-right"><b>Nome</b></td>
+                                <td class="text-right"><b>Quantidade</b></td>
+                              </tr>
                             {% for prob in doencas_mais_comuns %}
                               <tr>
                                 <td>
@@ -163,7 +177,7 @@
                 <div class="card card-stats">
                   <div class="card-header card-header-warning card-header-icon">
                     <div class="card-icon">
-                      <i class="material-icons">weekend</i>
+                      <i class="material-icons">groups</i>
                     </div>
                     <p class="card-category">Colaboradores Cadastrados</p>
                     <h3 class="card-title">{{ quantidade_empregados }}</h3>
@@ -174,7 +188,7 @@
                 <div class="card card-stats">
                   <div class="card-header card-header-success card-header-icon">
                     <div class="card-icon">
-                      <i class="material-icons">store</i>
+                      <i class="material-icons">manage_accounts</i>
                     </div>
                     <p class="card-category">Gestores Cadastrados</p>
                     <h3 class="card-title">{{ quantidade_gestores }}</h3>

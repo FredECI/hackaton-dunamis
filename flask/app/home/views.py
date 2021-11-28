@@ -139,3 +139,7 @@ def pesquisa():
 
     return render_template('home/form-page.html', perguntas=dict_perguntas)
 
+
+@home.route("/tutorial")
+def tutorial():
+    return render_template('home/tutorial-page.html')

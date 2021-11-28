@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+{% block titulo %}Tutorial - FiFit{% endblock %}
+
+{% block body %}
+
+<body class="signup-page sidebar-collapse">
+  <nav class="navbar navbar-color-on-scroll navbar-transparent    fixed-top  navbar-expand-lg " color-on-scroll="100" id="sectionsNav">
+    <div class="container">
+      <div class="navbar-translate">
+        <a href="../examples/landing-page.html">
+          <img src="../assets/img/logo-fifit5.png"
+          width = 350
+          style = "margin-right: 1rem;"
+          style = "margin-bottom: 1rem;"> </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+
+
+          <li class="button-container nav-item iframe-extern" style="margin-left: 1rem;">
+            <a href="../examples/landing-page.html" target="_blank" class="btn  btn-info   btn-round btn-block">
+              <i class="material-icons"></i> Home
+            </a>
+          </li>
+
+
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="page-header header-filter" filter-color="orange" style="background-image: url('../assets/img/paisagem2.jpg'); background-size: cover; background-position: top center;">
+    <div class="container ">
+      <div class="row ">
+        <div class="col-md-10 ml-auto mr-auto ">
+          <div class="card card-signup " style="background-image: url('../assets/img/preguiça-malhando4.png'); background-size: cover; background-position: top center;">
+            <h2 class="card-title text-center roboto">Instalando o FiFit</h2>
+            <h4 class="card-title text-center roboto">v1.0.1</h4>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-12 ml-auto ">
+                  <div class="info info-horizontal ">
+                    <div class="icon icon-warning">
+                      <i class="material-icons">arrow_right</i>
+                    </div>
+                    <div class="description">
+                      <h4 class="info-title">1. Baixando a Extensão FiFit</h4>
+                      <p class="description" style="color:black; font-size: 16px; font-weight: 1000;">
+                        Clique <a href="https://s3.amazonaws.com/fifit-plugin/FiFit.zip">aqui</a> para baixar a pasta da extensão. Vá até o arquivo "FiFit.zip" que acabou de ser baixado para o seu computador e clique com o botão direito do mouse, na janela que irá abrir selecione a opção "Extrair para "FiFit/"."
+                      </p>
+                    </div>
+                    </div>
+                    <div class="info info-horizontal ">
+                      <div class="icon icon-rose">
+                        <i class="material-icons">arrow_right</i>
+                      </div>
+                    <div class="description">
+                      <h4 class="info-title">2. Acessando Menu de Extensões</h4>
+                      <p class="description" style="color:black; font-size: 16px; font-weight: 1000;">
+                        Acesse o menu de extensões do Google Chrome, para isso, clique no ícone de quebra cabeças no canto superior direito de seu navegador, após o clique, será exibido uma janela, nela, selecione "Gerenciar extensões". Agora que já estamos no menu, ative o Modo do Desenvolvedor no canto superior direito da tela.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="info info-horizontal">
+                    <div class="icon icon-primary">
+                      <i class="material-icons">arrow_right</i>
+                    </div>
+                    <div class="description">
+                      <h4 class="info-title">3. Adicionando Extensão ao Chrome</h4>
+                      <p class="description" style="color:black; font-size: 16px; font-weight: 1000;">
+                        Depois de ativado o Modo do Desenvolvedor, uma barra com três opções irá aparecer logo abaixo da barra de navegação. Selecione a opção "Carregar sem compactação", ao clicar nela, seu gerenciador de arquivos irá abrir. Selecione, então, a pasta "FiFit".
+                      </p>
+                    </div>
+                  </div>
+                  <div class="info info-horizontal">
+                    <div class="icon icon-info">
+                      <i class="material-icons">arrow_right</i>
+                    </div>
+                    <div class="description">
+                      <h4 class="info-title">4. Fixando FiFit</h4>
+                      <p class="description" style="color:black; font-size: 16px; font-weight: 1000;">
+                        Por último, clique no quebra cabeças no canto superior do seu navegador, ele irá abrir uma pequena janela de extensões, nela você deverá ver a nossa extensão do FiFit. Clique no pin ao lado da FiFit para deixá-la fixada em seu Google Chrome.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-5 mr-auto">
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="container">
+        <nav class="float-left">
+          <ul>
+            <li>
+              <a href="../examples/landing-page.html">
+                FiFit
+              </a>
+            </li>
+            <li>
+              <a href="https://www.portaldaindustria.com.br/sesi/">
+                SESI
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+      </div>
+    </footer>
+  </div>
+{% endblock %}
+
+{% block js %}
+    <script src="{{ url_for('static', filename='sites/js/core/jquery.min.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='sites/js/core/popper.min.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='sites/js/core/bootstrap-material-design.min.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='sites/js/plugins/moment.min.js') }}"></script>
+    <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+    <script src="{{ url_for('static', filename='sites/js/plugins/bootstrap-datetimepicker.js') }}" type="text/javascript"></script>
+    <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+    <script src="{{ url_for('static', filename='sites/js/plugins/nouislider.min.js') }}" type="text/javascript"></script>
+    <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
+    <script src="{{ url_for('static', filename='sites/js/plugins/bootstrap-tagsinput.js') }}"></script>
+    <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
+    <script src="{{ url_for('static', filename='sites/js/plugins/bootstrap-selectpicker.js') }}" type="text/javascript"></script>
+    <!--	Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+    <script src="{{ url_for('static', filename='sites/js/plugins/jasny-bootstrap.min.js') }}" type="text/javascript"></script>
+    <!--	Plugin for Small Gallery in Product Page -->
+    <script src="{{ url_for('static', filename='sites/js/plugins/jquery.flexisel.js') }}" type="text/javascript"></script>
+    <!-- Plugins for presentation and navigation  -->
+    <script src="{{ url_for('static', filename='sites/demo/modernizr.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='sites/demo/vertical-nav.js') }}" type="text/javascript"></script>
+    <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
+    <script src="{{ url_for('static', filename='sites/js/material-kit.js') }}?v=2.2.0" type="text/javascript"></script>
+{% endblock %}

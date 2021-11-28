@@ -7,7 +7,7 @@ from typing import Dict, Union, List
 
 def get_doencas():
     res = {
-        "Alcoolismo": 0,
+        # "Alcoolismo": 0,
         "Cancer de Mama": 0,
         "Obesidade": 0,
         "Cardiaco": 0,
@@ -21,7 +21,8 @@ def get_doencas():
     for r in lista:
         x = int(r.id_pergunta)
         if x == 1 or x == 3 or x == 5:
-            res["Alcoolismo"] += 1
+            pass
+            # res["Alcoolismo"] += 1
 
         elif x == 9:
             res["Cancer de Mama"] += 1

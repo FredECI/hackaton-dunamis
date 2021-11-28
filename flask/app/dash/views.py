@@ -8,7 +8,7 @@ from .utils import get_scoreboard, get_empregados, get_gestores, get_doencas
 @login_required
 @dash.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
-    if current_user.gestor != 1:
+    if not current_user.is_authenticated or current_user.gestor != 1:
         return redirect(url_for("home.index"))
 
     melhores_usuarios = [
@@ -17,7 +17,7 @@ def dashboard():
 
     doencas_mais_comuns = [
         (i, k, v) for i, (k, v) in enumerate(get_doencas().items())
-    ]
+    ][:5]
 
     quantidade_empregados = get_empregados()
 
