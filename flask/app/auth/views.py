@@ -7,12 +7,6 @@ from .. import db
 # from .forms import RegisterForm, LoginForm
 
 
-@auth.route('/teste', methods=['GET', 'POST'])
-def teste():
-    usuario = request.args.get('usuario')
-    return jsonify({"usuario": usuario})
-
-
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -28,7 +22,7 @@ def login():
             u = Usuario.query.filter_by(email=email, senha=senha_hash).first()
             if u is not None:
                 login_user(u)
-                return redirect(url_for('home.dashboard'))
+                return redirect(url_for('home.dash'))
 
         flash("Credenciais incorretas", "danger")
 

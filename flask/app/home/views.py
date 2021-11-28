@@ -13,7 +13,7 @@ def index():
     return render_template('home/index.html')
 
 
-@home.route('/dashboard', methods=['GET', 'POST'])
+@home.route('/dash', methods=['GET', 'POST'])
 @login_required
 def dashboard():
     return render_template('base.html')
@@ -21,15 +21,29 @@ def dashboard():
 
 @home.route('/exercise', methods=['GET', "POST"])
 def exercise():
+    # pegando token
     if current_user.is_authenticated():
         token = current_user.token
+        user: Usuario = current_user
     else:
         token = request.args.get('token')
         if token is not None:
             return redirect(url_for('home.index'))
-        if Usuario.query.filter_by(token=token).first() is not None:
+        user: Usuario = Usuario.query.filter_by(token=token).first()
+        if user is not None:
             return redirect(url_for('home.index'))
 
+    # verificando se pode entrar nessa hora
+    hora_min = user.hora_inicio
+    hora_max = user.hora_fim
+    datetime_now = datetime.now()
+    hora_now = datetime_now.hour
+    if not (hora_min <= hora_now <= hora_max):
+        return render_template(
+            'home/exercise-page.html', duracao_min=0, duracao_seg=0,
+            ja_comecou=False, mensagem="Não é a hora programada ainda. Volte novamente mais tarde")
+
+    # pegando o tempo antigo
     duracao_min = request.args.get('tempo', '10')
     duracao_seg = 0
     if not duracao_min.isnumeric():     # NaN
@@ -39,20 +53,21 @@ def exercise():
 
     tempo: Tempo = Tempo.query.filter_by(token=token).first()
     ja_comecou = False
-
+    # se nao tiver tempo anterior
     if tempo is None or tempo.hora is None:
         if tempo is None:
             tempo = Tempo()
             tempo.token = token
-        tempo.hora = datetime.now().isoformat()
+        tempo.hora = datetime_now.isoformat()
 
         db.session.add(tempo)
         db.session.commit()
 
+    # com tempo anterior, tem que verificar
     else:
         hora_banco_str: str = tempo.hora
         hora_banco: datetime = datetime.fromisoformat(hora_banco_str)
-        hora_atual: datetime = datetime.now()
+        hora_atual: datetime = datetime_now
         diff: timedelta = hora_atual - hora_banco
         diff_sec = diff.seconds % 3600
         if diff_sec > duracao_min * 60:  # era antigo, reset

@@ -66,9 +66,11 @@
                 <a id="start_counter" href="#" onclick="countdown('ten-countdown', {{ duracao_min }}, {{ duracao_seg }});" class="btn btn-info btn-link btn-lg" style="color:blue">Começar</a>
               </div>
               <div class="card-body justify-content-center">
-                <p>
-                  Preencher1
+              {% if mensagem %}
+                  <p>
+                      {{ mensagem }}
                 </p>
+              {% endif %}
               </div>
             </div>
           </form>
