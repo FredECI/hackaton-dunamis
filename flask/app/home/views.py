@@ -96,6 +96,9 @@ def exercise():
             duracao_min = duracao_seg // 60
             duracao_seg %= 60
 
+    # pegando alguma frase
+
+
     return render_template('home/exercise-page.html',
                            duracao_min=duracao_min, duracao_seg=duracao_seg,
                            ja_comecou=ja_comecou)
