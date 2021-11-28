@@ -14,6 +14,7 @@ from flask_login import current_user
 from . import api
 from ..models import Usuario, encode_md5
 from .. import db
+from ..utils import get_mensagens
 
 from typing import Tuple
 from dataclasses import dataclass, field
@@ -111,11 +112,7 @@ def login():
 
 @api.route("/api/mensagem", methods=['GET', "POST"])
 def mensagem():
-    arquivo = os.path.join(os.path.dirname(__file__), 'mensagem.json')
-    with open(arquivo, 'r', encoding='utf-8') as f:
-        lista = json.load(f)
-
-    ret = {'mensagem': choice(lista)}
+    ret = {'mensagem': choice(get_mensagens())}
     return jsonify(ret)
 
 

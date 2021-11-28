@@ -1,6 +1,12 @@
 {
-  "obesidade": [
+  "Obesidade": [
     "Você sabia? Apenas o peso não é indicativo de obesidade! Busque orientação médica para emagrecimento saudável, e encontre a saúde para seu corpo.",
-    "Você sabia? Um IMC maior que 25 é indicativo de sobrepeso, e acima de 30 já é considerado obesidade. Fique atento e cuidado."
+    "Você sabia? Um IMC maior que 25 é indicativo de sobrepeso, e acima de 30 já é considerado obesidade. Fique atento e cuidado.",
+    "Você sabia? A obesidade está correlacionada com diversas doenças crônicas, aumentando o risco de complicações diárias, e deve ser evitada e tratada."
+  ],
+  "Diabetes": [
+    "Você sabia? Urina em excesso, emagrecimento sem causa aparente e boca seca são sintomas de diabetes. Em caso de suspeita, busque orientação o quanto antes!",
+    "Você sabia? Diabetes pode ser por resistência insulínica ou por não produção do hormônio, e o tratamento muda dependendo do tipo.",
+    "Você sabia? Exercícios físicos regularmente promovem mudança hormonal que diminui a resistência insulínica. Portanto, tanto ajudam na prevenção quanto no manejamento da doença"
   ]
 }

@@ -5,6 +5,7 @@ from . import home
 from ..models import Usuario, Tempo, Pergunta, Resposta
 from .. import db
 from ..api.views import generate_token
+from ..utils import get_frases
 
 from datetime import datetime, timedelta
 from typing import List
@@ -97,11 +98,11 @@ def exercise():
             duracao_seg %= 60
 
     # pegando alguma frase
-
+    frase = get_frases(user)
 
     return render_template('home/exercise-page.html',
                            duracao_min=duracao_min, duracao_seg=duracao_seg,
-                           ja_comecou=ja_comecou)
+                           ja_comecou=ja_comecou, mensagem=frase)
 
 
 @home.route("/pesquisa", methods=['GET', "POST"])

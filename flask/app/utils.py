@@ -1,15 +1,35 @@
 from .models import Usuario, Resposta
 from . import db
-
+from os import path
+from json import load
+from random import choice
 
 from typing import Dict, Union, List
 
+PATH_MENSAGEM = path.join(path.dirname(__file__), 'mensagem.json')
+PATH_FRASES = path.join(path.dirname(__file__), 'frases.json')
+
+
+def get_mensagens():
+    with open(PATH_MENSAGEM, 'r', encoding='utf-8') as f:
+        lista = load(f)
+    return choice(lista)
+
 
 def get_frases(user: Usuario):
-    pass
+    r = get_doencas(user)
+    maior = max(r.keys(), key=lambda x: r[x])
+
+    with open(PATH_FRASES, 'r', encoding='utf-8') as f:
+        dict_frases = load(f)
+
+    if maior in dict_frases:
+        return choice(dict_frases[maior])
+    else:
+        return get_mensagens()
 
 
-def get_doencas():
+def get_doencas(user=None) -> Dict:
     res = {
         # "Alcoolismo": 0,
         "Cancer de Mama": 0,
@@ -20,7 +40,10 @@ def get_doencas():
         "Cancer de Pulmão": 0,
     }
 
-    lista: List[Resposta] = Resposta.query.all()
+    if user is None:
+        lista: List[Resposta] = Resposta.query.all()
+    else:
+        lista: List[Resposta] = Resposta.query.filter_by(token_pessoa=user.token).all()
 
     for r in lista:
         x = int(r.id_pergunta)
