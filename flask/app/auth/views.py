@@ -58,7 +58,7 @@ def register():
                 db.session.commit()
 
                 login_user(u)
-                return redirect(url_for('home.index'))
+                return redirect(url_for('home.pesquisa'))
 
     return render_template('auth/register.html')
 
