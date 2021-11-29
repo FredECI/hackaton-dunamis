@@ -36,8 +36,10 @@ class Response:
 
 
 def generate_token(user: Usuario):
-    user.token = encode_md5(str(user.email) + str(user.senha))
+    t = encode_md5(str(user.email) + str(user.senha))
+    user.token = t
     db.session.commit()
+    return r
 
 
 @api.route('/api/tempo', methods=['GET'])

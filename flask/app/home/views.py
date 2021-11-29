@@ -112,6 +112,8 @@ def pesquisa():
 
     if request.method == 'POST':
         token = user.token
+        if token is None:
+            token = generate_token(user)
 
         # limpando as pesquisas anteriores
         Resposta.query.filter_by(token_pessoa=token).delete()
@@ -124,7 +126,7 @@ def pesquisa():
                 r = Resposta()
                 r.token_pessoa = token
                 r.id_pergunta = int(id_pergunta)
-                r.ident = r.token_pessoa + str(r.id_pergunta)
+                r.ident = token + str(r.id_pergunta)
                 db.session.add(r)
 
         db.session.commit()
